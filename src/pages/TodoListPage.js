@@ -1,10 +1,11 @@
-import { useEffect, useState ,useCallback} from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import Stack from '@mui/material/Stack';
 import { Button, TextField, Todo } from '../components';
 import { useSelector, useDispatch } from 'react-redux';
 import { getTodos } from '../redux/todoSelectors';
 import { addedState, addTodo, swithTodoState, deleteTodo } from '../redux/todoAction';
 import { todoActionTypes } from '../redux/todoActionTypes';
+import { Filter } from '../components/Filter';
 
 export const TodoListPage = () => {
     const [todoText, setTodoText] = useState('');
@@ -34,19 +35,27 @@ export const TodoListPage = () => {
     }
 
     const onTodoClick = useCallback(
-    (id) => {
-        dispatch(swithTodoState(id))
-    },[dispatch,swithTodoState])
+        (id) => {
+            dispatch(swithTodoState(id))
+        }, [dispatch, swithTodoState])
 
 
     const onTodoDelete = useCallback(
-    (id) => {
-        dispatch(deleteTodo(id));
-    },[dispatch,deleteTodo])
+        (id) => {
+            dispatch(deleteTodo(id));
+        }, [dispatch, deleteTodo])
 
     return (
         <>
             <h1>TODOLIST</h1>
+            <Stack
+                alignItems="center"
+                justifyContent="center"
+                marginBottom={5}
+            >
+
+                <Filter />
+            </Stack>
             <Stack
                 direction="row"
                 spacing={10}

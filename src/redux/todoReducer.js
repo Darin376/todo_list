@@ -1,7 +1,9 @@
+import { FILTER_TYPE } from "../constans/FilterConstans";
 import { todoActionTypes } from "./todoActionTypes";
 
 const initialState = {
     todos: [],
+    filterType:FILTER_TYPE.ALL
 };
 
 export const todoReducer = (state = initialState, action) => {
@@ -19,7 +21,7 @@ export const todoReducer = (state = initialState, action) => {
                 todos: state.todos.filter(
                     (todo) => todo.id !== action.payload.toDeleteId)
             }
-        case todoActionTypes.SWICH_TODO:
+        case todoActionTypes.SWITCH_TODO:
             // const indexTodoItem = state.todos.findIndex(({id}) =>id === action.payload.checkId);
             // const newArr = JSON.parse(JSON.stringify(state.todos))
             // newArr[indexTodoItem].done = !newArr[indexTodoItem].done

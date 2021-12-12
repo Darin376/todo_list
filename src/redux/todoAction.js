@@ -20,7 +20,7 @@ export const deleteTodo = (id) => ({
 });
 
 export const swithTodoState = (id) => ({
-    type:todoActionTypes.SWICH_TODO,
+    type:todoActionTypes.SWITCH_TODO,
     payload:{
         checkId: id,
     }
