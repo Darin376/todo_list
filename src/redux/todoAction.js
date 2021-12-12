@@ -19,8 +19,8 @@ export const deleteTodo = (id) => ({
     }
 });
 
-export const checkTodo = (id) => ({
-    type:todoActionTypes.CHECK_TODO,
+export const swithTodoState = (id) => ({
+    type:todoActionTypes.SWICH_TODO,
     payload:{
         checkId: id,
     }

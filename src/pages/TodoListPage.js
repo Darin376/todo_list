@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState ,useCallback} from 'react';
 import Stack from '@mui/material/Stack';
 import { Button, TextField, Todo } from '../components';
 import { useSelector, useDispatch } from 'react-redux';
 import { getTodos } from '../redux/todoSelectors';
-import { addedState, addTodo, checkTodo, deleteTodo } from '../redux/todoAction';
+import { addedState, addTodo, swithTodoState, deleteTodo } from '../redux/todoAction';
 import { todoActionTypes } from '../redux/todoActionTypes';
 
 export const TodoListPage = () => {
@@ -11,19 +11,18 @@ export const TodoListPage = () => {
     const todos = useSelector(getTodos);
     const dispatch = useDispatch();
 
+    // useEffect(() => {
 
-    useEffect(() => {
+    //     let local = JSON.parse(localStorage.getItem('todos'))
+    //     console.log(local)
+    //     dispatch(addedState(local))
+    // }, [])
 
-        let local = JSON.parse(localStorage.getItem('todos'))
-        console.log(local)
-        dispatch(addedState(local))
-    }, [])
+    // useEffect(() => {
+    //     let td = JSON.stringify(todos)
+    //     localStorage.setItem('todos', td)
 
-    useEffect(() => {
-        let td = JSON.stringify(todos)
-        localStorage.setItem('todos', td)
-
-    }, [todos])
+    // }, [todos])
 
     const handleChange = ({ target: { value } }) => {
         setTodoText(value);
@@ -32,18 +31,18 @@ export const TodoListPage = () => {
     const addTodoHandler = () => {
         // add todo to store
         dispatch(addTodo(todoText));
-        setTodoText('');
-
     }
 
-    const onTodoClick = (id) => {
-        dispatch(checkTodo(id))
-    }
+    const onTodoClick = useCallback(
+    (id) => {
+        dispatch(swithTodoState(id))
+    },[dispatch,swithTodoState])
 
 
-    const onTodoDelete = (id) => {
+    const onTodoDelete = useCallback(
+    (id) => {
         dispatch(deleteTodo(id));
-    }
+    },[dispatch,deleteTodo])
 
     return (
         <>

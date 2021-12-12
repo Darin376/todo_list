@@ -19,20 +19,17 @@ export const todoReducer = (state = initialState, action) => {
                 todos: state.todos.filter(
                     (todo) => todo.id !== action.payload.toDeleteId)
             }
-        case todoActionTypes.CHECK_TODO:
-            const indexTodosItem = state.todos.findIndex((todo) => todo.id === action.payload.checkId)
-            const newArr = JSON.parse(JSON.stringify(state.todos))
-            newArr[indexTodosItem].done = !newArr[indexTodosItem].done
-            console.log(newArr[indexTodosItem].done)
+        case todoActionTypes.SWICH_TODO:
+            // const indexTodoItem = state.todos.findIndex(({id}) =>id === action.payload.checkId);
+            // const newArr = JSON.parse(JSON.stringify(state.todos))
+            // newArr[indexTodoItem].done = !newArr[indexTodoItem].done
             return {
-                todos: newArr
+                todos: state.todos.map((todo) => ({
+                    ...todo,
+                    done: todo.id === action.payload.checkId ? !todo.done : todo.done
+                }))
             }
-
         default:
             return state;
-
     }
 }
-
-
-
