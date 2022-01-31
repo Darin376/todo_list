@@ -3,24 +3,23 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import SendIcon from '@mui/icons-material/Send';
 
 const iconTypes = {
-    delete:{
+    delete: {
         component: DeleteIcon,
-        variant: 'outlined',
+        variant: 'outlined'
     },
-    add:{
+    add: {
         component: SendIcon,
-        variant: 'contained',
-    },
-
+        variant: 'contained'
+    }
 };
 
-export const Button = ({type,text,handlClick}) => {
+export const Button = ({ type, text, handleClick }) => {
     const Icon = iconTypes[type].component;
-    return <Btn 
-        startIcon={<Icon/>}
-        variant = {iconTypes[type].variant}
-        onClick = {handlClick}>
-             {text}
+
+    return <Btn
+        startIcon={<Icon />}
+        onClick={handleClick}
+        variant={iconTypes[type].variant} >
+            {text}
         </Btn>
-    
-}
+};
